@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 try {
-    $stmt = $pdo->prepare("SELECT * FROM items WHERE id = ?");
+    $stmt = $con->prepare("SELECT * FROM items WHERE id = ?");
     $stmt->execute([$id]);
     $item = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stock = $_POST['stock'];
 
     try {
-        $stmt = $pdo->prepare("UPDATE items SET name = ?, brand = ?, skin_type = ?, price = ?, stock = ? WHERE id = ?");
+        $stmt = $con->prepare("UPDATE items SET name = ?, brand = ?, skin_type = ?, price = ?, stock = ? WHERE id = ?");
         $stmt->execute([$name, $brand, $skin_type, $price, $stock, $id]);
         
         header("Location: index.php");
