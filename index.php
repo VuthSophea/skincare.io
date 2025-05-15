@@ -2,7 +2,7 @@
 include 'db.php';
 
 try {
-    $stmt = $pdo->query("SELECT * FROM items ORDER BY id ASC");
+    $stmt = $con->query ("SELECT * FROM items ORDER BY id ASC");
     $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "<div class='alert alert-danger'>Error: " . $e->getMessage() . "</div>";
@@ -22,12 +22,39 @@ try {
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-primary">Skincares Information</h1>
+            <h1 class="text-dark m-0">
+                    <button class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button> 
+                    Skincares Information
+                </h1>
+                  <div class="offcanvas offcanvas-start w-25 bg-dark text-white" tabindex="-1" id="sidebar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">About Me</h5>
+            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+                    <i class="fa-solid fa-store me-2"></i> Topic : Skincares Information
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+                    <i class="fa-solid fa-user-tie me-2"></i> Name :  Vuth Sophea
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+                    <i class="fa-solid fa-landmark me-2"></i> Class : A6 Year3 Semester2
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+                    <i class="fa-solid fa-school me-2"></i> School :  Royal University of Phnom Penh
+                </a>
+            </div>
+        </div>
+    </div>
+            
             <a href="create.php" class="btn btn-success">
                 <i class="fas fa-plus"></i> Add New Item
             </a>
         </div>
-
         <?php if (!empty($items)): ?>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -78,22 +105,6 @@ try {
             <div class="alert alert-info">No items found. Add your first skincare item!</div>
         <?php endif; ?>
     </div>
-<footer class="bg-light py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h4>About</h4>
-                <ul class="list-unstyled text-muted">
-                    <h5>
-                    <li>Topic   : Skincares Information</li>
-                    <li>Name    : Vuth Sophea</li>
-                    <li>Class   : A6 Year3 Semester2</li>
-                    <li>School  : Royal University of Phnom Penh</li></h5>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
