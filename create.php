@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stock = $_POST['stock'];
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO items (name, brand, skin_type, price, stock) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $con->prepare("INSERT INTO items (name, brand, skin_type, price, stock) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$name, $brand, $skin_type, $price, $stock]);
         header('Location: index.php?message=Item added successfully!');
         exit();
@@ -69,13 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Save Item
                     </button>
-            <div class="modal-body">
-                <p>This application is designed to manage skincare product information. You can:</p>
-                <p>Built with PHP, Bootstrap, and Font Awesome for a clean and responsive design.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
                 </form>
             </div>
         </div>
